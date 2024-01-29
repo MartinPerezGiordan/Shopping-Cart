@@ -1,0 +1,41 @@
+html {
+  background-color: #fef2ff;
+  color: rgba(0, 0, 0, 0.664);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 1440px;
+  margin: 0px 40px;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.hero h1 {
+  font-size: 3em;
+  text-wrap: wrap;
+  margin: 100px;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

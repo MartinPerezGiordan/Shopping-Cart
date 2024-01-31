@@ -3,14 +3,14 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ cartItemCount }) => {
   return (
     <header>
-      <div className="logo">
+      <Link className="logo" to="/">
         <h1>ECOMMERCE</h1>
-      </div>
-      <Link to="cart">
-        Cart
+      </Link>
+      <Link to="/cart">
+        Cart {cartItemCount}
         <FontAwesomeIcon icon={faShoppingCart} />
       </Link>
     </header>

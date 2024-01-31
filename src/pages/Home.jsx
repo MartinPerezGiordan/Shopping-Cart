@@ -4,8 +4,10 @@ import ProductCard from "../components/ProductCard";
 import { useEffect, useState } from "react";
 import useProducts from "../services/api";
 
-const Home = () => {
+const Home = ({ cartList, onListChange }) => {
   const { data: products, loading, error } = useProducts();
+
+  let cartItemCount = cartList.length;
 
   useEffect(() => {
     if (loading) {
@@ -18,7 +20,7 @@ const Home = () => {
   return (
     <>
       <div className="container">
-        <Header />
+        <Header cartItemCount={cartItemCount} />
         <div className="hero">
           <h1>
             Indulge in Effortless Shopping from the Cozy Comfort of Your Home –
@@ -33,7 +35,11 @@ const Home = () => {
         <div className="product-display">
           {products &&
             products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+              <ProductCard
+                onListChange={onListChange}
+                key={index}
+                product={product}
+              />
             ))}
         </div>
       </section>

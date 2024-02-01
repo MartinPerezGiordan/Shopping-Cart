@@ -4,7 +4,7 @@ import ProductCard from "../components/ProductCard";
 import { useEffect, useState } from "react";
 import useProducts from "../services/api";
 
-const Home = ({ cartList, onListChange }) => {
+const Home = ({ cartList, onListAdd }) => {
   const { data: products, loading, error } = useProducts();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Home = ({ cartList, onListChange }) => {
           {products &&
             products.map((product, index) => (
               <ProductCard
-                onListChange={onListChange}
+                onListAdd={onListAdd}
                 key={index}
                 product={product}
               />

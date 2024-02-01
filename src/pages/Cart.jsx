@@ -1,9 +1,8 @@
 import CartItemCard from "../components/CartItemCard";
 import "./Cart.css";
 import Header from "../components/Header";
-import { useId } from "react";
 
-const Cart = ({ cartList, onListChange, onListRemove }) => {
+const Cart = ({ cartList, onListAdd, onListRemove }) => {
   return (
     <>
       <Header cartList={cartList}></Header>
@@ -13,7 +12,7 @@ const Cart = ({ cartList, onListChange, onListRemove }) => {
           .filter((item) => !item.isRemoved) // Filter out items with isRemoved: true
           .map((item, index) => (
             <CartItemCard
-              onListChange={onListChange}
+              onListChange={onListAdd}
               onListRemove={onListRemove}
               item={item}
               key={index}

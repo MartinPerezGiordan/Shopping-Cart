@@ -1,21 +1,43 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Router = () => {
   const [cartList, setCartList] = useState([]);
 
-  const handleCartChange = (newItem) => {
-    setCartList((prevCartList) => [...prevCartList, newItem]);
+  const handleCartAdd = (newItem) => {
+    setCartList((prevCartList) => {
+      // Check if the item with the same ID already exists in the cart
+      const itemExists = prevCartList.some((item) => item.id === newItem.id);
+
+      // If the item exists, update its quantity; otherwise, add it to the cart
+      return itemExists
+        ? prevCartList.map((item) =>
+            item.id === newItem.id
+              ? { ...item, quantity: (item.quantity || 1) + 1 }
+              : item
+          )
+        : [...prevCartList, { ...newItem, quantity: 1 }];
+    });
   };
 
+  useEffect(() => {
+    console.log(cartList); // Log the updated cartList with quantity
+  }, [cartList]);
+
   const handleCartRemove = (itemToRemove) => {
-    setCartList((prevCartList) =>
-      prevCartList.map((item) =>
-        item === itemToRemove ? { ...item, isRemoved: true } : item
-      )
-    );
+    setCartList((prevCartList) => {
+      return prevCartList.map((item) => {
+        if (item === itemToRemove && itemToRemove.quantity < 2) {
+          return { ...item, isRemoved: true };
+        } else if (item === itemToRemove && itemToRemove.quantity >= 2) {
+          return { ...item, quantity: itemToRemove.quantity - 1 };
+        } else {
+          return item;
+        }
+      });
+    });
   };
 
   const router = createBrowserRouter([
@@ -24,7 +46,7 @@ const Router = () => {
       element: (
         <Home
           cartList={cartList}
-          onListChange={(newItem) => handleCartChange(newItem)}
+          onListAdd={(newItem) => handleCartAdd(newItem)}
         />
       ),
     },
@@ -33,7 +55,7 @@ const Router = () => {
       element: (
         <Cart
           cartList={cartList}
-          onListChange={(newItem) => handleCartChange(newItem)}
+          onListAdd={(newItem) => handleCartAdd(newItem)}
           onListRemove={(itemToRemove) => handleCartRemove(itemToRemove)}
         />
       ),

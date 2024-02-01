@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import "./CartItemCard.css";
 
-function CartItemCard({ item, onListChange, onListRemove }) {
+function CartItemCard({ item, onListAdd, onListRemove }) {
   const handleRemove = () => {
     if (onListRemove) {
       onListRemove(item);
@@ -24,7 +24,7 @@ function CartItemCard({ item, onListChange, onListRemove }) {
           className="minus-icon cart-icon"
           icon={faMinus}
         />
-        <h3>1</h3>
+        <h3>{item.quantity}</h3>
         <FontAwesomeIcon className="plus-icon cart-icon" icon={faPlus} />
       </div>
       <FontAwesomeIcon className="trash-icon cart-icon" icon={faTrash} />

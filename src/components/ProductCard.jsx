@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./ProductCard.css";
 
-const ProductCard = ({ product, onListChange }) => {
+const ProductCard = ({ product, onListAdd }) => {
   const { title, price, image, category } = product;
   const random = Math.random();
   const rating = Math.floor(random * 5) + 1;
@@ -11,7 +11,7 @@ const ProductCard = ({ product, onListChange }) => {
   const handleClick = () => {
     const productToAdd = { ...product, isRemoved: false };
     console.log(productToAdd);
-    onListChange(productToAdd);
+    onListAdd(productToAdd);
   };
 
   return (

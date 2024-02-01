@@ -1,22 +1,28 @@
 import CartItemCard from "../components/CartItemCard";
 import "./Cart.css";
 import Header from "../components/Header";
+import { useId } from "react";
 
-const Cart = ({ cartList, onListChange }) => {
-  let cartItemCount = cartList.length;
-
+const Cart = ({ cartList, onListChange, onListRemove }) => {
   return (
     <>
-      <Header cartItemCount={cartItemCount}></Header>
+      <Header cartList={cartList}></Header>
       <h1>Cart</h1>
       <ul>
-        {cartList.map((item) => (
-          <CartItemCard item={item} />
-        ))}
+        {cartList
+          .filter((item) => !item.isRemoved) // Filter out items with isRemoved: true
+          .map((item, index) => (
+            <CartItemCard
+              onListChange={onListChange}
+              onListRemove={onListRemove}
+              item={item}
+              key={index}
+            />
+          ))}
       </ul>
       <hr />
       <h2>Total: $1230</h2>
-      <button onClick={() => alert("Not implemented yet")}>Checkout</button>
+      <button onClick={() => alert("Successful buy")}>Checkout</button>
     </>
   );
 };

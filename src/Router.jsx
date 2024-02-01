@@ -10,6 +10,14 @@ const Router = () => {
     setCartList((prevCartList) => [...prevCartList, newItem]);
   };
 
+  const handleCartRemove = (itemToRemove) => {
+    setCartList((prevCartList) =>
+      prevCartList.map((item) =>
+        item === itemToRemove ? { ...item, isRemoved: true } : item
+      )
+    );
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -26,6 +34,7 @@ const Router = () => {
         <Cart
           cartList={cartList}
           onListChange={(newItem) => handleCartChange(newItem)}
+          onListRemove={(itemToRemove) => handleCartRemove(itemToRemove)}
         />
       ),
     },

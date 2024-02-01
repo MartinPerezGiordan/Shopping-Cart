@@ -7,8 +7,6 @@ import useProducts from "../services/api";
 const Home = ({ cartList, onListChange }) => {
   const { data: products, loading, error } = useProducts();
 
-  let cartItemCount = cartList.length;
-
   useEffect(() => {
     if (loading) {
       console.log("Loading products...");
@@ -20,7 +18,7 @@ const Home = ({ cartList, onListChange }) => {
   return (
     <>
       <div className="container">
-        <Header cartItemCount={cartItemCount} />
+        <Header cartList={cartList} />
         <div className="hero">
           <h1>
             Indulge in Effortless Shopping from the Cozy Comfort of Your Home –

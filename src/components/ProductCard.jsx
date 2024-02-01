@@ -7,8 +7,12 @@ const ProductCard = ({ product, onListChange }) => {
   const { title, price, image, category } = product;
   const random = Math.random();
   const rating = Math.floor(random * 5) + 1;
-  console.log(title);
-  console.log(image);
+
+  const handleClick = () => {
+    const productToAdd = { ...product, isRemoved: false };
+    console.log(productToAdd);
+    onListChange(productToAdd);
+  };
 
   return (
     <article className="product-card">
@@ -31,10 +35,7 @@ const ProductCard = ({ product, onListChange }) => {
         </div>
         <div className="product-down-info">
           <p className="product-price">${price.toFixed(2)}</p>
-          <button
-            onClick={() => onListChange(product)}
-            className="add-to-cart-button"
-          >
+          <button onClick={handleClick} className="add-to-cart-button">
             <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
             Add to Cart
           </button>

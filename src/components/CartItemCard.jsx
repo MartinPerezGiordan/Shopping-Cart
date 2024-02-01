@@ -10,12 +10,20 @@ function CartItemCard({ item, onListAdd, onListRemove }) {
     }
   };
 
+  const handleAdd = () => {
+    if (onListAdd) {
+      onListAdd(item);
+    }
+  };
+
   return (
     <div className="cart-item-card">
       <img src={item.image} alt={item.title} />
       <div className="info">
         <h3>{item.title}</h3>
-        <h1>${item.price}</h1>
+        <h3>
+          ${item.price} x {item.quantity} = ${item.price * item.quantity}
+        </h3>
       </div>
 
       <div className="options">
@@ -25,9 +33,12 @@ function CartItemCard({ item, onListAdd, onListRemove }) {
           icon={faMinus}
         />
         <h3>{item.quantity}</h3>
-        <FontAwesomeIcon className="plus-icon cart-icon" icon={faPlus} />
+        <FontAwesomeIcon
+          className="plus-icon cart-icon"
+          icon={faPlus}
+          onClick={handleAdd}
+        />
       </div>
-      <FontAwesomeIcon className="trash-icon cart-icon" icon={faTrash} />
     </div>
   );
 }

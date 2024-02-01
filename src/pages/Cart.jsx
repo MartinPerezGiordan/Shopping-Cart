@@ -3,6 +3,17 @@ import "./Cart.css";
 import Header from "../components/Header";
 
 const Cart = ({ cartList, onListAdd, onListRemove }) => {
+  function calculateTotal() {
+    let total = 0;
+    cartList.forEach((item) => {
+      if (!item.isRemoved) {
+        total += item.price * item.quantity;
+      }
+    });
+
+    return total.toFixed(2);
+  }
+
   return (
     <>
       <Header cartList={cartList}></Header>
@@ -10,18 +21,24 @@ const Cart = ({ cartList, onListAdd, onListRemove }) => {
       <ul>
         {cartList
           .filter((item) => !item.isRemoved) // Filter out items with isRemoved: true
-          .map((item, index) => (
+          .map((item) => (
             <CartItemCard
-              onListChange={onListAdd}
+              onListAdd={onListAdd}
               onListRemove={onListRemove}
               item={item}
-              key={index}
+              key={item.id}
             />
           ))}
       </ul>
       <hr />
-      <h2>Total: $1230</h2>
-      <button onClick={() => alert("Successful buy")}>Checkout</button>
+      <h2>Total: ${calculateTotal()}</h2>
+      <button
+        onClick={() =>
+          alert("Successful buy, your total is $" + calculateTotal())
+        }
+      >
+        Checkout
+      </button>
     </>
   );
 };

@@ -9,9 +9,11 @@ const ProductCard = ({ product, onListAdd }) => {
   const rating = Math.floor(random * 5) + 1;
 
   const handleClick = () => {
+    console.log(product);
     const productToAdd = { ...product, isRemoved: false };
     console.log(productToAdd);
     onListAdd(productToAdd);
+    alert("Added " + productToAdd.title + " to the Shopping Cart");
   };
 
   return (

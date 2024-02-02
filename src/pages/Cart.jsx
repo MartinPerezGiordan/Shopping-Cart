@@ -33,9 +33,13 @@ const Cart = ({ cartList, onListAdd, onListRemove }) => {
       <hr />
       <h2>Total: ${calculateTotal()}</h2>
       <button
-        onClick={() =>
-          alert("Successful buy, your total is $" + calculateTotal())
-        }
+        onClick={() => {
+          if (calculateTotal() > 0) {
+            alert("Successful buy, your total is $" + calculateTotal());
+          } else {
+            alert("Your cart is empty");
+          }
+        }}
       >
         Checkout
       </button>

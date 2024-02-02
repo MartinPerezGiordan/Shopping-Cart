@@ -15,7 +15,11 @@ const Router = () => {
       return itemExists
         ? prevCartList.map((item) =>
             item.id === newItem.id
-              ? { ...item, quantity: (item.quantity || 1) + 1 }
+              ? {
+                  ...item,
+                  quantity: item.quantity + 1,
+                  isRemoved: false,
+                }
               : item
           )
         : [...prevCartList, { ...newItem, quantity: 1 }];
@@ -30,9 +34,9 @@ const Router = () => {
     setCartList((prevCartList) => {
       return prevCartList.map((item) => {
         if (item === itemToRemove && itemToRemove.quantity < 2) {
-          return { ...item, isRemoved: true };
+          return { ...item, quantity: 0, isRemoved: true };
         } else if (item === itemToRemove && itemToRemove.quantity >= 2) {
-          return { ...item, quantity: itemToRemove.quantity - 1 };
+          return { ...item, quantity: item.quantity - 1 };
         } else {
           return item;
         }

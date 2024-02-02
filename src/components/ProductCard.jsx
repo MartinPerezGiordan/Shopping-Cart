@@ -4,9 +4,7 @@ import { faStar, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./ProductCard.css";
 
 const ProductCard = ({ product, onListAdd }) => {
-  const { title, price, image, category } = product;
-  const random = Math.random();
-  const rating = Math.floor(random * 5) + 1;
+  const { title, price, image, category, rating } = product;
 
   const handleClick = () => {
     console.log(product);
@@ -26,13 +24,14 @@ const ProductCard = ({ product, onListAdd }) => {
           <p className="product-category">{category}</p>
           <h3 className="product-name">{title}</h3>
           <div className="product-rating">
-            {Array.from({ length: rating }, (_, index) => (
+            {Array.from({ length: rating.rate }, (_, index) => (
               <FontAwesomeIcon
                 key={index}
                 icon={faStar}
                 className="star-icon"
               />
             ))}
+            <p>{rating.rate}</p>
           </div>
         </div>
         <div className="product-down-info">

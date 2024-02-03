@@ -6,7 +6,9 @@
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   min-width: 250px;
+  max-width: 300px;
   flex: 0 1 calc(25% - 20px);
+  background-color: rgb(255, 255, 255);
 }
 
 .product-image {
@@ -46,13 +48,12 @@
   margin-top: 0px;
 }
 
-.product-rating {
-  color: #ffc107; /* Star color */
-  margin-bottom: 8px;
+.star-icon {
+  color: #888;
 }
 
-.star-icon {
-  margin-right: 4px;
+.star-icon.filled {
+  color: gold;
 }
 
 .product-price {

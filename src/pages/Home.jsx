@@ -17,19 +17,25 @@ const Home = ({ cartList, onListAdd }) => {
 
   return (
     <>
-      <div className="container">
-        <Header cartList={cartList} />
-        <div className="hero">
-          <h1>
-            Indulge in Effortless Shopping from the Cozy Comfort of Your Home –
-            Where Convenience Meets Style!
-          </h1>
-          <img src="../images/Bolsa.png" alt="" />
+      <div className="img-container">
+        <div className="container">
+          <Header cartList={cartList} />
+          <div className="hero">
+            <div className="hero-info">
+              <h1>
+                Indulge in Effortless Shopping from the Cozy Comfort of Your
+                Home
+              </h1>
+              <a className="big-btn" href="#s1">
+                Start Shopping
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <section>
-        <h1>Products</h1>
+      <section id="s1">
+        <h2>Products</h2>
         <div className="product-display">
           {products &&
             products.map((product, index) => (

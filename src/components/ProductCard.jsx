@@ -14,6 +14,8 @@ const ProductCard = ({ product, onListAdd }) => {
     alert("Added " + productToAdd.title + " to the Shopping Cart");
   };
 
+  const totalStars = 5;
+
   return (
     <article className="product-card">
       <div className="product-image">
@@ -24,11 +26,13 @@ const ProductCard = ({ product, onListAdd }) => {
           <p className="product-category">{category}</p>
           <h3 className="product-name">{title}</h3>
           <div className="product-rating">
-            {Array.from({ length: rating.rate }, (_, index) => (
+            {Array.from({ length: totalStars }, (_, index) => (
               <FontAwesomeIcon
                 key={index}
                 icon={faStar}
-                className="star-icon"
+                className={`star-icon ${
+                  index < rating.rate ? "filled" : "outline"
+                }`}
               />
             ))}
             <p>{rating.rate}</p>

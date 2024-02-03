@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faIcons } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
@@ -8,10 +8,11 @@ const Header = ({ cartList }) => {
 
   return (
     <header>
-      <Link className="logo" to="/">
-        <h1>ECOMMERCE</h1>
+      <Link className="logo link" to="/">
+        <FontAwesomeIcon icon={faIcons} />
+        <h1>UrbanGoods</h1>
       </Link>
-      <Link to="/cart">
+      <Link className="link cart-icon" to="/cart">
         Cart {cartItemCount}
         <FontAwesomeIcon icon={faShoppingCart} />
       </Link>

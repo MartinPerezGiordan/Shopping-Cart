@@ -2,9 +2,29 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 0px;
+  padding: 30px 100px; /* Remove the horizontal padding */
+  background-color: rgba(0, 0, 0, 0.8);
+}
+header .logo {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 30px;
 }
 
 header h1 {
+  font-size: 1.2em;
   margin: 0;
+}
+
+header .link {
+  text-decoration: none;
+}
+
+header .cart-icon {
+  color: white;
+  font-weight: bold;
 }
